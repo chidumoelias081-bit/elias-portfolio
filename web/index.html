@@ -35,6 +35,7 @@ h1{font-size:clamp(2.4rem,6vw,4rem);margin:6px 0 12px}.lead{font-size:1.2rem;col
 .card{background:var(--card);border:1px solid var(--bd);border-radius:18px;overflow:hidden;box-shadow:var(--sh);transition:.25s}.pj:hover{transform:translateY(-5px)}
 .pimg{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}.pb{padding:18px}.pb p{color:var(--mut);margin:8px 0}
 .post{padding:20px;margin-bottom:18px}.post img,.post video{width:100%;border-radius:12px;margin:10px 0}.mut,small{color:var(--mut)}
+.vid{position:relative;aspect-ratio:16/9;margin:10px 0}.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:12px}
 .rx{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.rx button,.ghost{padding:5px 14px;font-size:.88rem}
 .cm{border-top:1px solid var(--bd);padding:8px 0;font-size:.95rem}
 input,textarea,select{width:100%;padding:10px 12px;margin:5px 0;border:1px solid var(--bd);border-radius:12px;background:var(--bg);color:var(--fg);font:inherit}textarea{min-height:76px}input[type=color]{height:42px;padding:3px}input[type=checkbox]{width:auto;margin-right:4px}
@@ -43,33 +44,19 @@ input,textarea,select{width:100%;padding:10px 12px;margin:5px 0;border:1px solid
 .adm,.admi{display:none!important}.admin .adm{display:block!important}.admin .admi{display:inline-block!important}
 .js .rv{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}.js .rv.in{opacity:1;transform:none}
 footer{text-align:center;padding:36px;color:var(--mut);font-size:.9rem}footer a{color:var(--mut)}@media(max-width:560px){.row{grid-template-columns:1fr}header{padding:10px 16px}.hero{padding-top:36px}}
+
+.shell{display:grid;grid-template-columns:230px 1fr;min-height:100vh}.side{background:var(--card);border-right:1px solid var(--bd);padding:18px 12px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
+.side a,.side .t{display:block;text-align:left;background:none;color:var(--fg);padding:10px 14px;border-radius:12px;text-decoration:none;font:500 .95rem var(--bf);border:0;cursor:pointer;width:100%;box-shadow:none}.side .t:hover,.side a:hover{background:var(--bg);transform:none;box-shadow:none}
+.side .on{background:color-mix(in srgb,var(--ac) 14%,transparent)!important;color:var(--ac)}.apanel{padding:28px;max-width:860px;width:100%}
+fieldset{border:1px solid var(--bd);border-radius:16px;margin:0 0 18px;padding:12px 18px 16px}legend{font-weight:600;padding:0 8px}label{display:block;font-size:.85rem;color:var(--mut);margin-top:8px}
+.toast{position:fixed;bottom:22px;right:22px;background:var(--fg);color:var(--bg);padding:10px 20px;border-radius:99px;opacity:0;transition:.3s;z-index:99;pointer-events:none}.toast.on{opacity:1}
+.row2{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--bd)}.prog{height:8px;background:var(--bd);border-radius:9px;overflow:hidden}.prog i{display:block;height:100%;background:var(--ac)}
+nav a.on{color:var(--fg);background:var(--card)}ul{padding-left:4px;list-style:none}li{padding:2px 0}
+@media(max-width:760px){.shell{grid-template-columns:1fr}.side{position:static;height:auto;flex-direction:row;flex-wrap:wrap}}
 </style></head><body>
-<header><a class="logo" href="#top" id="nm">Portfolio</a><nav><a href="#about">About</a><a href="#projects">Projects</a><a href="#feed">Updates</a><a href="#contact">Contact</a><button class="ghost" id="th" title="Light / dark">◐</button></nav></header>
-<div id="st" class="note" hidden role="status"></div>
-<main id="top">
-<section id="hero" style="padding-top:0"><div class="hero"><div><div class="eyebrow">University of Zimbabwe</div><h1>Elias Chidumo</h1><p class="lead">Cloud Computing &amp; IoT student | Full-stack developer</p></div></div></section>
-<div id="stats" class="stats"></div>
-<details class="adm panel"><summary>✎ Edit profile &amp; appearance</summary><form id="pf">
-<div class="row"><div><label>Full name</label><input name="name"></div><div><label>Headline</label><input name="headline" placeholder="e.g. Cloud engineer | Full-stack developer"></div>
-<div><label>Location</label><input name="location"></div><div><label>Availability badge</label><input name="availability" placeholder="Open to internships"></div>
-<div><label>CV / résumé link</label><input name="resume"></div><div><label>Profile photo</label><input type="file" id="avf" accept="image/*"><input type="hidden" name="avatar"></div>
-<div><label>Accent colour</label><input type="color" name="accent" value="#c0362c"></div><div><label>Heading style</label><select name="font"><option value="serif">Elegant serif</option><option value="sans">Clean sans-serif</option></select></div></div>
-<label>About you</label><textarea name="about" placeholder="Who you are, what you build, the value you bring"></textarea>
-<label>Skills (comma separated)</label><input name="skills">
-<label>Highlights, one per line: Value | Label &nbsp;(e.g. 5 | Projects built)</label><textarea name="stats"></textarea>
-<label>Experience, one per line: Role | Company | Years | Impact</label><textarea name="experience"></textarea>
-<label>Education, one per line: Degree | School | Years</label><textarea name="education"></textarea>
-<label>Links, one per line: Label | URL (WhatsApp | https://wa.me/263…, Email | mailto:you@mail.com, LinkedIn | …)</label><textarea name="links"></textarea>
-<label>Sections to hide from visitors</label><div><label><input type="checkbox" name="hide" value="about">About</label> <label><input type="checkbox" name="hide" value="exp">Experience</label> <label><input type="checkbox" name="hide" value="edu">Education</label> <label><input type="checkbox" name="hide" value="projects">Projects</label> <label><input type="checkbox" name="hide" value="feed">Updates</label></div>
-<p><button>Save changes</button></p></form></details>
-<section id="about" class="rv"></section><section id="exp" class="rv"></section><section id="edu" class="rv"></section>
-<section id="projects" class="rv"><h2>Projects</h2><div id="pl" class="grid"></div>
-<details class="adm panel"><summary>＋ Add or edit a project</summary><form id="jf"><input name="title" placeholder="Title" required><textarea name="summary" placeholder="What it is and the problem it solves"></textarea>
-<input name="outcome" placeholder="Result / impact, e.g. cut reporting time by 60%"><input name="stack" placeholder="Tech stack, comma separated"><div class="row"><input name="demo" placeholder="Live demo URL"><input name="repo" placeholder="Code repository URL"></div>
-<label class="mut">Screenshot</label><input type="file" id="pjf" accept="image/*"><input type="hidden" name="image"><p><button id="jb">Add project</button></p></form></details></section>
-<section id="feed" class="rv"><h2>Updates</h2><form id="nf" class="adm panel"><textarea name="body" placeholder="Share an update…"></textarea><input type="file" name="media" accept="image/*,video/*"><small>Photo and video upload needs media storage on the server.</small><p><button>Post</button></p></form><div id="fl"></div></section>
-<section id="contact" class="rv"></section>
-</main><footer><span id="yr"></span> · <a href="#" id="adl">Admin</a></footer>
+<div id="site"><header><a class="logo" href="#/" id="nm">Portfolio</a><nav id="nav"></nav></header><div id="st" class="note" hidden role="status"></div>
+<main id="view"></main><footer><span id="yr"></span> · <a href="#/admin">Admin</a></footer></div>
+<div id="admin" hidden></div><div id="toast" class="toast"></div>
 <script src="config.js"></script>
 <script>
 const API=window.API_URL,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];let tok;try{tok=localStorage.tok}catch{}
@@ -79,63 +66,91 @@ const U=u=>esc(/^(https?:|mailto:|tel:)/i.test(u||'')?u:'#'),I=u=>esc(/^(https?:
 const G=l=>{l=String(l).toLowerCase();return/whats/.test(l)?'W':/mail/.test(l)?'@':/linked/.test(l)?'in':/git/.test(l)?'GH':/^x$|twitter/.test(l)?'X':/face/.test(l)?'f':/insta/.test(l)?'IG':/you/.test(l)?'▶':'↗'};
 async function api(p,o={}){const h={};if(o.body&&!(o.body instanceof FormData))h['Content-Type']='application/json';if(tok)h.Authorization='Bearer '+tok;
  const r=await fetch(API+p,{...o,headers:h});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'Request failed');return j}
-const R={like:'👍',love:'❤️',insightful:'💡'};let PJ={},C=null;
-function draw(p,pr,po){
- const S=document.documentElement.style,hide=p.hide||[];
- /^#[0-9a-f]{6}$/i.test(p.accent||'')?S.setProperty('--ac',p.accent):S.removeProperty('--ac');p.font==='sans'?S.setProperty('--hf','var(--bf)'):S.removeProperty('--hf');
- ['about','exp','edu','projects','feed','contact'].forEach(id=>$('#'+id).style.display=!tok&&hide.includes(id)?'none':'');
- const soc=(p.links||[]).map(l=>`<a class="soc" href="${U(l.url)}" target="_blank" rel="noopener"><i>${G(l.label)}</i>${esc(l.label)}</a>`).join('');
- document.title=(p.name||'Portfolio')+' | Portfolio';$('#nm').textContent=p.name||'Portfolio';$('#yr').textContent='© '+new Date().getFullYear()+' '+(p.name||'');
- $('#hero').innerHTML=`<div class="hero">${p.avatar?`<img class="av" src="${I(p.avatar)}" alt="">`:''}<div><div class="eyebrow">${esc(p.location||'')}</div><h1>${esc(p.name||'Your Name')}</h1><p class="lead">${esc(p.headline||'Your headline')}</p>${p.availability?`<span class="pill">● ${esc(p.availability)}</span>`:''}<div class="cta">${p.resume?`<a class="btn" href="${U(p.resume)}" target="_blank" rel="noopener">Download CV</a>`:''}<a class="btn ghost" href="#contact">Contact me</a></div><div class="socs">${soc}</div></div></div>`;
- $('#stats').innerHTML=(p.stats||[]).map(s=>`<div class="stat"><b>${esc(s.value)}</b>${esc(s.label)}</div>`).join('');
- $('#about').innerHTML=`<h2>About</h2><p class="pre">${esc(p.about||'Tell visitors who you are using the edit panel.')}</p>${(p.skills||[]).map(s=>`<span class="chip">${esc(s)}</span>`).join('')}`;
- const tl=(h,a,f)=>`<h2>${h}</h2><div class="tl">${a.map(f).join('')||'<p class="mut">Nothing here yet.</p>'}</div>`;
- $('#exp').innerHTML=tl('Experience',p.experience||[],e=>`<div class="it"><h3>${esc(e.role)}</h3><div class="mut">${esc(e.company)} · ${esc(e.years)}</div><p>${esc(e.impact)}</p></div>`);
- $('#edu').innerHTML=tl('Education',p.education||[],e=>`<div class="it"><h3>${esc(e.degree)}</h3><div class="mut">${esc(e.school)} · ${esc(e.years)}</div></div>`);
- PJ={};$('#pl').innerHTML=pr.map(({id,data:d})=>{PJ[id]=d;return`<article class="card pj">${d.image?`<img class="pimg" loading="lazy" src="${I(d.image)}" alt="">`:''}<div class="pb"><h3>${esc(d.title)}</h3><p>${esc(d.summary)}</p>${d.outcome?`<p><b>Impact:</b> ${esc(d.outcome)}</p>`:''}${(d.stack||'').split(',').filter(x=>x.trim()).map(s=>`<span class="chip">${esc(s.trim())}</span>`).join('')}<div class="cta">${d.demo?`<a class="btn" href="${U(d.demo)}" target="_blank" rel="noopener">Live demo</a>`:''}${d.repo?`<a class="btn ghost" href="${U(d.repo)}" target="_blank" rel="noopener">Code</a>`:''}<button class="ghost admi" data-ep="${id}">Edit</button><button class="ghost admi" data-dp="${id}">Delete</button></div></div></article>`}).join('')||'<p class="mut">Projects coming soon.</p>';
- $('#fl').innerHTML=po.map(x=>`<div class="card post"><small>${new Date(x.created).toLocaleDateString()}</small> <button class="ghost admi" data-dpost="${x.id}">Delete</button><p>${esc(x.body)}</p>${x.media_url?(x.media_type==='video'?`<video controls preload="metadata" src="${I(x.media_url)}"></video>`:`<img loading="lazy" src="${I(x.media_url)}" alt="">`):''}
- <div class="rx">${Object.entries(R).map(([k,e])=>`<button class="ghost" data-react="${x.id}:${k}">${e} ${x.reactions[k]||0}</button>`).join('')}</div>
- ${x.comments.map(c=>`<div class="cm"><b>${esc(c.name)}</b> <button class="ghost admi" data-dc="${c.id}">×</button><br>${esc(c.body)}</div>`).join('')}
- <form class="cf" data-id="${x.id}"><input name="name" placeholder="Your name" maxlength="60" required><input name="body" placeholder="Write a comment…" maxlength="1000" required><button>Comment</button></form></div>`).join('')||'<p class="mut">No updates yet.</p>';
- $('#contact').innerHTML=`<h2>Let's connect</h2><p class="lead">Open to opportunities, collaborations and good conversations.</p><div class="socs">${soc||'<span class="mut">Add your links in the edit panel.</span>'}</div>`;
-}
-const lines=v=>v.split('\n').map(l=>l.split('|').map(x=>x.trim())).filter(r=>r[0]);
-function fill(p){const f=$('#pf').elements;['name','headline','location','availability','resume','about','avatar'].forEach(k=>f[k].value=p[k]||'');
- f.skills.value=(p.skills||[]).join(', ');f.stats.value=(p.stats||[]).map(s=>s.value+' | '+s.label).join('\n');
- f.experience.value=(p.experience||[]).map(e=>[e.role,e.company,e.years,e.impact].join(' | ')).join('\n');f.education.value=(p.education||[]).map(e=>[e.degree,e.school,e.years].join(' | ')).join('\n');
- f.links.value=(p.links||[]).map(l=>l.label+' | '+l.url).join('\n');f.accent.value=/^#[0-9a-f]{6}$/i.test(p.accent||'')?p.accent:'#c0362c';f.font.value=p.font||'serif';
- $$('#pf [name=hide]').forEach(c=>c.checked=(p.hide||[]).includes(c.value))}
-const CK='pf_cache';
-async function load(){const r=await Promise.allSettled([api('/api/profile'),api('/api/projects'),api('/api/posts')]);const bad=r.find(x=>x.status==='rejected');
- if(r.every(x=>x.status==='rejected'))throw bad.reason;
- const v=r.map((x,i)=>x.status==='fulfilled'?x.value:(C?C[i]:[{},[],[]][i]));draw(...v);if(tok&&r[0].status==='fulfilled')fill(v[0]);
- if(bad)throw bad.reason;C=v;try{localStorage[CK]=JSON.stringify(v)}catch{}}
-const run=f=>async e=>{e.preventDefault();try{await f(e)}catch(x){alert(x.message);if(x.message==='Not authorised'){try{delete localStorage.tok}catch{}location.reload()}}};
-const shrink=(file,max,sq)=>new Promise((ok,no)=>{const im=new Image();im.onload=()=>{let w=im.width,h=im.height,sx=0,sy=0,sw=w,sh=h;
- if(sq){const m=Math.min(w,h);sx=(w-m)/2;sy=(h-m)/2;sw=sh=m;w=h=Math.min(max,m)}else{const k=Math.min(1,max/w);w=Math.round(w*k);h=Math.round(h*k)}
+const M=u=>u&&u[0]==='/'?API+u:u;
+const med=x=>!x.media_url?'':x.media_type==='embed'?`<div class="vid"><iframe src="${I(M(x.media_url))}" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>`:x.media_type==='video'?`<video controls preload="metadata" playsinline src="${I(M(x.media_url))}"></video>`:`<img loading="lazy" src="${I(M(x.media_url))}" alt="">`;
+const R={like:'👍',love:'❤️',insightful:'💡'},CK='pf_cache';let D={p:{},pr:[],po:[],ms:[]},tab='overview',EP=null,loaded=false;
+const hv=k=>!(D.p.hide||[]).includes(k),lines=v=>v.split('\n').map(l=>l.split('|').map(x=>x.trim())).filter(r=>r[0]);
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2400)};
+const socs=p=>(p.links||[]).map(l=>`<a class="soc" href="${U(l.url)}" target="_blank" rel="noopener"><i>${G(l.label)}</i>${esc(l.label)}</a>`).join('');
+const chips=a=>a.map(s=>`<span class="chip">${esc(s)}</span>`).join('');
+const tl=(h,a,f)=>a.length?`<section><h2>${h}</h2><div class="tl">${a.map(f).join('')}</div></section>`:'';
+const pcard=x=>`<a class="card pj" href="#/projects/${x.id}" style="display:block;text-decoration:none;color:inherit">${x.data.image?`<img class="pimg" loading="lazy" src="${I(x.data.image)}" alt="">`:''}<div class="pb"><h3>${esc(x.data.title)}</h3><p>${esc((x.data.summary||'').slice(0,140))}</p>${chips((x.data.stack||'').split(',').map(s=>s.trim()).filter(Boolean))}</div></a>`;
+const post=x=>`<div class="card post"><small>${new Date(x.created).toLocaleDateString()}</small><p class="pre">${esc(x.body)}</p>${med(x)}<div class="rx">${Object.entries(R).map(([k,e])=>`<button class="ghost" data-act="react" data-v="${x.id}:${k}">${e} ${x.reactions[k]||0}</button>`).join('')}</div>${x.comments.map(c=>`<div class="cm"><b>${esc(c.name)}</b><br>${esc(c.body)}</div>`).join('')}<form class="cf" data-id="${x.id}"><input name="name" placeholder="Your name" maxlength="60" required><input name="body" placeholder="Write a comment…" maxlength="1000" required><button>Comment</button></form></div>`;
+const more=(h,t)=>`<p><a class="btn ghost" href="${h}">${t} →</a></p>`;
+// ---------- public pages ----------
+const pages={
+ '/'(){const{p,pr,po}=D;return`<div class="hero">${p.avatar?`<img class="av" src="${I(p.avatar)}" alt="">`:''}<div><div class="eyebrow">${esc(p.location||'')}</div><h1>${esc(p.name||'Welcome')}</h1><p class="lead">${esc(p.headline||'This portfolio is being set up.')}</p>${p.availability?`<span class="pill">● ${esc(p.availability)}</span>`:''}<div class="cta">${p.resume?`<a class="btn" href="${U(p.resume)}" target="_blank" rel="noopener">Download CV</a>`:''}${hv('contact')?'<a class="btn ghost" href="#/contact">Get in touch</a>':''}</div><div class="socs">${socs(p)}</div></div></div>`+
+  ((p.stats||[]).length?`<div class="stats">${p.stats.map(s=>`<div class="stat"><b>${esc(s.value)}</b>${esc(s.label)}</div>`).join('')}</div>`:'')+
+  (p.about&&hv('about')?`<section><h2>About</h2><p class="pre">${esc(p.about.slice(0,420))}${p.about.length>420?'…':''}</p>${more('#/about','More about me')}</section>`:'')+
+  (pr.length&&hv('projects')?`<section><h2>Featured projects</h2><div class="grid">${pr.slice(0,3).map(pcard).join('')}</div>${more('#/projects','All projects')}</section>`:'')+
+  (po.length&&hv('feed')?`<section><h2>Latest updates</h2>${po.slice(0,2).map(post).join('')}${more('#/updates','All updates')}</section>`:'')},
+ '/about'(){const p=D.p;return`<section><h2>About</h2><p class="pre">${esc(p.about||'Nothing here yet.')}</p>${chips(p.skills||[])}</section>`+(hv('exp')?tl('Experience',p.experience||[],e=>`<div class="it"><h3>${esc(e.role)}</h3><div class="mut">${esc(e.company)} · ${esc(e.years)}</div><p>${esc(e.impact)}</p></div>`):'')+(hv('edu')?tl('Education',p.education||[],e=>`<div class="it"><h3>${esc(e.degree)}</h3><div class="mut">${esc(e.school)} · ${esc(e.years)}</div></div>`):'')+(hv('certs')?tl('Certifications',p.certs||[],e=>`<div class="it"><h3>${esc(e.name)}</h3><div class="mut">${esc(e.issuer)} · ${esc(e.year)}</div></div>`):'')},
+ '/projects'(){return`<section><h2>Projects</h2>${D.pr.length?`<div class="grid">${D.pr.map(pcard).join('')}</div>`:'<p class="mut">Projects are coming soon.</p>'}</section>`},
+ '/updates'(){return`<section><h2>Updates</h2>${D.po.map(post).join('')||'<p class="mut">No updates yet.</p>'}</section>`},
+ '/contact'(){return`<section><h2>Get in touch</h2><p class="lead">Recruiting, collaborating or just saying hello? Send a message and I will reply by email.</p><form id="mf" class="card" style="padding:20px"><div class="row"><div><input name="name" placeholder="Your name" required maxlength="80"></div><div><input name="email" type="email" placeholder="Your email" required></div></div><textarea name="body" placeholder="Your message" required maxlength="3000"></textarea><input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true"><p><button>Send message</button></p></form><h3 style="margin:26px 0 12px">Or find me here</h3><div class="socs">${socs(D.p)||'<span class="mut">No links yet.</span>'}</div></section>`}};
+function detail(id){const x=D.pr.find(v=>v.id==id);if(!x)return'<section><h2>Project not found</h2><a class="btn ghost" href="#/projects">← All projects</a></section>';const d=x.data;
+ return`<section><p><a href="#/projects" class="mut">← All projects</a></p><h2>${esc(d.title)}</h2>${d.image?`<img class="pimg" style="border-radius:18px;margin-bottom:18px" src="${I(d.image)}" alt="">`:''}<p class="pre">${esc(d.summary)}</p>${d.outcome?`<div class="stat" style="text-align:left;margin:14px 0"><b style="font-size:1.1rem">Impact</b>${esc(d.outcome)}</div>`:''}${chips((d.stack||'').split(',').map(s=>s.trim()).filter(Boolean))}<div class="cta" style="margin-top:16px">${d.demo?`<a class="btn" href="${U(d.demo)}" target="_blank" rel="noopener">Live demo</a>`:''}${d.repo?`<a class="btn ghost" href="${U(d.repo)}" target="_blank" rel="noopener">View code</a>`:''}</div></section>`}
+// ---------- admin ----------
+const inp=(n,l,v='',ph='')=>`<label>${l}</label><input name="${n}" value="${esc(v)}" placeholder="${esc(ph)}">`,ta=(n,l,v='',ph='')=>`<label>${l}</label><textarea name="${n}" placeholder="${esc(ph)}">${esc(v)}</textarea>`;
+const aform={
+ overview(){const p=D.p,c=[['Name',p.name],['Headline',p.headline],['About text',p.about],['Profile photo',p.avatar],['Skills',(p.skills||[]).length],['Social links',(p.links||[]).length],['First project',D.pr.length]],n=c.filter(x=>x[1]).length;
+  return`<h2>Overview</h2><div class="stats"><div class="stat"><b>${D.pr.length}</b>Projects</div><div class="stat"><b>${D.po.length}</b>Updates</div><div class="stat"><b>${D.ms.length}</b>Messages</div><div class="stat"><b>${D.po.reduce((a,x)=>a+x.comments.length,0)}</b>Comments</div></div><h3 style="margin:26px 0 10px">Profile ${Math.round(n/c.length*100)}% complete</h3><div class="prog"><i style="width:${n/c.length*100}%"></i></div><ul>${c.map(x=>`<li>${x[1]?'✅':'⬜'} ${x[0]}</li>`).join('')}</ul><p><a class="btn" href="#/" target="_blank">View my site</a></p>`},
+ profile(){const p=D.p,j=(a,f)=>(a||[]).map(f).join('\n'),hid=p.hide||[],cb=(v,l)=>`<label style="margin-right:14px"><input type="checkbox" name="hide" value="${v}" ${hid.includes(v)?'checked':''}>${l}</label>`;
+  return`<h2>Profile</h2><form id="pf"><fieldset><legend>Basics</legend><div class="row"><div>${inp('name','Full name',p.name)}</div><div>${inp('headline','Headline',p.headline,'e.g. Cloud engineer | Full-stack developer')}</div><div>${inp('location','Location',p.location)}</div><div>${inp('availability','Availability badge',p.availability,'Open to internships')}</div></div>${inp('resume','CV / résumé link',p.resume,'Google Drive or any public link')}<label>Profile photo</label><div style="display:flex;gap:14px;align-items:center"><span id="avp">${p.avatar?`<img class="av" style="width:72px;height:72px" src="${I(p.avatar)}" alt="">`:''}</span><input type="file" id="avf" accept="image/*"></div><input type="hidden" name="avatar" value="${esc(p.avatar||'')}"></fieldset>
+  <fieldset><legend>About</legend>${ta('about','About you',p.about,'Who you are, what you build, the value you bring')}${inp('skills','Skills (comma separated)',(p.skills||[]).join(', '))}${ta('stats','Highlights, one per line: Value | Label',j(p.stats,s=>s.value+' | '+s.label),'5 | Projects built')}</fieldset>
+  <fieldset><legend>Experience, education and certificates</legend>${ta('experience','Experience: Role | Company | Years | Impact',j(p.experience,e=>[e.role,e.company,e.years,e.impact].join(' | ')))}${ta('education','Education: Degree | School | Years',j(p.education,e=>[e.degree,e.school,e.years].join(' | ')))}${ta('certs','Certifications: Name | Issuer | Year',j(p.certs,e=>[e.name,e.issuer,e.year].join(' | ')))}</fieldset>
+  <fieldset><legend>Social and contact links</legend>${ta('links','One per line: Label | URL',j(p.links,l=>l.label+' | '+l.url),'WhatsApp | https://wa.me/263…\nEmail | mailto:you@mail.com\nLinkedIn | https://linkedin.com/in/…')}</fieldset>
+  <fieldset><legend>Appearance and visibility</legend><div class="row"><div><label>Accent colour</label><input type="color" name="accent" value="${/^#[0-9a-f]{6}$/i.test(p.accent||'')?p.accent:'#c0362c'}"></div><div><label>Heading style</label><select name="font"><option value="serif">Elegant serif</option><option value="sans" ${p.font==='sans'?'selected':''}>Clean sans-serif</option></select></div></div><p class="mut">Hide from visitors:</p>${cb('about','About')}${cb('exp','Experience')}${cb('edu','Education')}${cb('certs','Certifications')}${cb('projects','Projects')}${cb('feed','Updates')}${cb('contact','Contact')}</fieldset><button>Save profile</button></form>`},
+ projects(){const e=EP&&(D.pr.find(x=>x.id==EP)||{}).data||{};
+  return`<h2>Projects</h2><form id="jf"><fieldset><legend>${EP?'Edit project':'Add a project'}</legend>${inp('title','Title',e.title)}${ta('summary','What it is and the problem it solves',e.summary)}${inp('outcome','Result / impact',e.outcome,'e.g. cut reporting time by 60%')}${inp('stack','Tech stack (comma separated)',e.stack)}<div class="row"><div>${inp('demo','Live demo URL',e.demo)}</div><div>${inp('repo','Code repository URL',e.repo)}</div></div><label>Screenshot</label><input type="file" id="pjf" accept="image/*"><input type="hidden" name="image" value="${esc(e.image||'')}"><p><button>${EP?'Save changes':'Add project'}</button> ${EP?'<button type="button" class="ghost" data-act="cancel">Cancel</button>':''}</p></fieldset></form><div class="list">${D.pr.map(x=>`<div class="row2"><span><b>${esc(x.data.title)}</b></span><span><button class="ghost" data-act="ep" data-v="${x.id}">Edit</button> <button class="ghost" data-act="dp" data-v="${x.id}">Delete</button></span></div>`).join('')||'<p class="mut">No projects yet.</p>'}</div>`},
+ updates(){return`<h2>Updates</h2><form id="nf" class="card" style="padding:18px"><textarea name="body" placeholder="Share an update, like on Facebook or LinkedIn…"></textarea><input type="file" name="media" accept="image/*,video/*"><input name="embed" placeholder="…or paste a YouTube / Vimeo link"><small>Photos are compressed automatically. Videos up to 40 MB, or use a link.</small><p><button>Post</button></p></form>${D.po.map(x=>`<div class="card post"><small>${new Date(x.created).toLocaleDateString()}</small> <button class="ghost" data-act="dpost" data-v="${x.id}">Delete post</button><p class="pre">${esc(x.body)}</p>${med(x)}<small>${Object.entries(x.reactions).map(([k,v])=>R[k]+' '+v).join('  ')}</small>${x.comments.map(c=>`<div class="cm"><b>${esc(c.name)}</b> <button class="ghost" data-act="dc" data-v="${c.id}">Remove</button><br>${esc(c.body)}</div>`).join('')}</div>`).join('')}`},
+ messages(){return`<h2>Messages</h2>${D.ms.map(m=>`<div class="card post"><b>${esc(m.name)}</b> · <a href="mailto:${esc(m.email)}">${esc(m.email)}</a> <small>${new Date(m.created).toLocaleString()}</small> <button class="ghost" data-act="dm" data-v="${m.id}">Delete</button><p class="pre">${esc(m.body)}</p></div>`).join('')||'<p class="mut">No messages yet. They will appear here when visitors use your contact form.</p>'}`}};
+const TABS=[['overview','🏠 Overview'],['profile','👤 Profile'],['projects','🧩 Projects'],['updates','📰 Updates'],['messages','✉️ Messages']];
+function adminHTML(){if(!tok)return`<div class="login"><form id="lf" class="card" style="padding:28px;max-width:380px;margin:12vh auto"><h2 style="margin-bottom:18px">Admin sign in</h2><input type="password" name="password" placeholder="Password" required autofocus><p><button>Sign in</button></p><a href="#/" class="mut">← Back to site</a></form></div>`;
+ return`<div class="shell"><aside class="side"><b class="logo" style="padding:6px 14px 14px">Dashboard</b>${TABS.map(([k,l])=>`<button class="t ${tab===k?'on':''}" data-act="tab" data-v="${k}">${l}${k==='messages'&&D.ms.length?` (${D.ms.length})`:''}</button>`).join('')}<a href="#/" target="_blank">🌐 View site</a><button class="t" data-act="logout">↩ Sign out</button></aside><div class="apanel">${aform[tab]()}</div></div>`}
+// ---------- router ----------
+function theme(){const S=document.documentElement.style,p=D.p;/^#[0-9a-f]{6}$/i.test(p.accent||'')?S.setProperty('--ac',p.accent):S.removeProperty('--ac');p.font==='sans'?S.setProperty('--hf','var(--bf)'):S.removeProperty('--hf')}
+function render(){const h=(location.hash.slice(1)||'/').replace(/\/$/,'')||'/',adm=h==='/admin';theme();$('#site').hidden=adm;$('#admin').hidden=!adm;
+ if(adm){$('#admin').innerHTML=adminHTML();document.title='Dashboard';return}
+ const p=D.p,m=h.match(/^\/projects\/(\d+)$/),gate={'/about':'about','/projects':'projects','/updates':'feed','/contact':'contact'}[h];
+ $('#nm').textContent=p.name||'Portfolio';document.title=(p.name||'Portfolio')+' | Portfolio';$('#yr').textContent='© '+new Date().getFullYear()+' '+(p.name||'');
+ const nav=[['/','Home'],['/about','About',hv('about')],['/projects','Projects',hv('projects')],['/updates','Updates',hv('feed')],['/contact','Contact',hv('contact')]].filter(x=>x[2]!==false);
+ $('#nav').innerHTML=nav.map(([r,l])=>`<a href="#${r}" class="${h===r||(r==='/projects'&&m)?'on':''}">${l}</a>`).join('')+'<button class="ghost" data-act="theme" title="Light / dark">◐</button>';
+ $('#view').innerHTML=m?detail(m[1]):gate&&!hv(gate)?'<section><h2>Not available</h2></section>':(pages[h]||pages['/'])();}
+async function load(){const r=await Promise.allSettled([api('/api/profile'),api('/api/projects'),api('/api/posts'),tok?api('/api/messages'):Promise.resolve([])]);const bad=r.find(x=>x.status==='rejected');
+ if(r.slice(0,3).every(x=>x.status==='rejected'))throw bad.reason;
+ const v=r.map((x,i)=>x.status==='fulfilled'?x.value:[D.p,D.pr,D.po,D.ms][i]);D={p:v[0],pr:v[1],po:v[2],ms:v[3]};loaded=true;
+ if(tok&&r[3].status==='rejected'&&/authorised/i.test(r[3].reason.message)){try{delete localStorage.tok}catch{}tok=null}
+ render();if(bad)throw bad.reason;try{localStorage[CK]=JSON.stringify([D.p,D.pr,D.po])}catch{}}
+// ---------- images ----------
+const shrink=(file,max,sq)=>new Promise((ok,no)=>{const im=new Image();im.onload=()=>{let w=im.width,h=im.height,sx=0,sy=0,sw=w,sh=h;if(sq){const m=Math.min(w,h);sx=(w-m)/2;sy=(h-m)/2;sw=sh=m;w=h=Math.min(max,m)}else{const k=Math.min(1,max/w);w=Math.round(w*k);h=Math.round(h*k)}
  const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(im,sx,sy,sw,sh,0,0,w,h);let q=.8,d;do{d=c.toDataURL('image/jpeg',q);q-=.1}while(d.length>140000&&q>.3);ok(d)};im.onerror=()=>no(new Error('Could not read that image'));im.src=URL.createObjectURL(file)});
-$('#avf').onchange=run(async e=>{if(e.target.files[0])$('#pf [name=avatar]').value=await shrink(e.target.files[0],320,true)});
-$('#pjf').onchange=run(async e=>{if(e.target.files[0])$('#jf [name=image]').value=await shrink(e.target.files[0],800)});
-$('#pf').onsubmit=run(async e=>{const fd=new FormData(e.target),f=Object.fromEntries(fd);
- await api('/api/profile',{method:'PUT',body:JSON.stringify({name:f.name,headline:f.headline,location:f.location,availability:f.availability,resume:f.resume,about:f.about,avatar:f.avatar,accent:f.accent,font:f.font,hide:fd.getAll('hide'),
- skills:f.skills.split(',').map(s=>s.trim()).filter(Boolean),stats:lines(f.stats).map(([value,label])=>({value,label})),experience:lines(f.experience).map(([role,company,years,impact])=>({role,company,years,impact})),
- education:lines(f.education).map(([degree,school,years])=>({degree,school,years})),links:lines(f.links).map(([label,url])=>({label,url}))})});await load()});
-$('#jf').onsubmit=run(async e=>{const f=e.target,old=f.dataset.edit;await api('/api/projects',{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(f)))});
- if(old)await api('/api/projects/'+old,{method:'DELETE'});f.reset();delete f.dataset.edit;$('#jb').textContent='Add project';await load()});
-$('#nf').onsubmit=run(async e=>{const b=e.target.querySelector('button');b.disabled=true;try{await api('/api/posts',{method:'POST',body:new FormData(e.target)});e.target.reset();await load()}finally{b.disabled=false}});
-document.addEventListener('submit',run(async e=>{if(!e.target.classList.contains('cf'))return;await api(`/api/posts/${e.target.dataset.id}/comments`,{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});await load()}),true);
-document.addEventListener('click',run(async e=>{const d=(e.target.closest('button')||{}).dataset||{};
- if(d.react){const[id,kind]=d.react.split(':');await api(`/api/posts/${id}/react`,{method:'POST',body:JSON.stringify({visitor:vid,kind})});await load()}
- else if(d.ep){const x=PJ[d.ep],f=$('#jf');['title','summary','outcome','stack','demo','repo','image'].forEach(k=>f.elements[k].value=x[k]||'');f.dataset.edit=d.ep;$('#jb').textContent='Save changes';f.closest('details').open=true;f.scrollIntoView({block:'center'})}
- else if(d.dp&&confirm('Delete project?')){await api('/api/projects/'+d.dp,{method:'DELETE'});await load()}
- else if(d.dpost&&confirm('Delete post?')){await api('/api/posts/'+d.dpost,{method:'DELETE'});await load()}
- else if(d.dc){await api('/api/comments/'+d.dc,{method:'DELETE'});await load()}}));
-$('#th').onclick=()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;try{localStorage.theme=t}catch{}};
-$('#adl').textContent=tok?'Log out':'Admin';document.body.classList.toggle('admin',!!tok);
-$('#adl').onclick=run(async e=>{e.preventDefault();if(tok){try{delete localStorage.tok}catch{}location.reload();return}
- const pw=prompt('Admin password');if(!pw)return;localStorage.tok=(await api('/api/login',{method:'POST',body:JSON.stringify({password:pw})})).token;location.reload()});
-const io='IntersectionObserver'in window?new IntersectionObserver(es=>es.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.05}):null;$$('.rv').forEach(el=>io?io.observe(el):el.classList.add('in'));
-async function boot(){let c=null;try{c=JSON.parse(localStorage[CK]||'null')}catch{}if(c){C=c;draw(...c);if(tok)fill(c[0])}
+const blob=(file,max)=>new Promise((ok,no)=>{const im=new Image();im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);c.toBlob(b=>b?ok(b):no(new Error('Could not process image')),'image/jpeg',.82)};im.onerror=()=>no(new Error('Could not read that image'));im.src=URL.createObjectURL(file)});
+// ---------- events ----------
+const run=f=>async e=>{try{await f(e)}catch(x){alert(x.message);if(x.message==='Not authorised'){try{delete localStorage.tok}catch{}tok=null;render()}}};
+document.addEventListener('submit',run(async e=>{e.preventDefault();const f=e.target,id=f.id,fd=new FormData(f),o=Object.fromEntries(fd);
+ if(id==='lf'){const r=await api('/api/login',{method:'POST',body:JSON.stringify({password:o.password})});tok=r.token;try{localStorage.tok=tok}catch{}await load();render()}
+ else if(id==='pf'){await api('/api/profile',{method:'PUT',body:JSON.stringify({name:o.name,headline:o.headline,location:o.location,availability:o.availability,resume:o.resume,about:o.about,avatar:o.avatar,accent:o.accent,font:o.font,hide:fd.getAll('hide'),skills:o.skills.split(',').map(s=>s.trim()).filter(Boolean),stats:lines(o.stats).map(([value,label])=>({value,label})),experience:lines(o.experience).map(([role,company,years,impact])=>({role,company,years,impact})),education:lines(o.education).map(([degree,school,years])=>({degree,school,years})),certs:lines(o.certs).map(([name,issuer,year])=>({name,issuer,year})),links:lines(o.links).map(([label,url])=>({label,url}))})});await load();toast('Profile saved ✓')}
+ else if(id==='jf'){const old=EP;await api('/api/projects',{method:'POST',body:JSON.stringify(o)});if(old)await api('/api/projects/'+old,{method:'DELETE'});EP=null;await load();toast(old?'Project updated ✓':'Project added ✓')}
+ else if(id==='nf'){const E=f.elements,b=f.querySelector('button'),file=E.media.files[0],n=new FormData();n.append('body',E.body.value);n.append('embed',E.embed.value);
+  if(file){if(file.type.startsWith('video')){if(file.size>40*1024*1024)throw new Error('That video is over 40 MB. Trim it, or paste a YouTube link instead.');n.append('media',file)}else if(file.type==='image/gif')n.append('media',file);else n.append('media',await blob(file,1600),'photo.jpg')}
+  b.disabled=true;b.textContent='Posting…';try{await api('/api/posts',{method:'POST',body:n});await load();toast('Posted ✓')}finally{b.disabled=false;b.textContent='Post'}}
+ else if(id==='mf'){await api('/api/messages',{method:'POST',body:JSON.stringify(o)});f.outerHTML='<div class="card" style="padding:24px"><h3>Thank you!</h3><p>Your message has been sent. I will reply by email soon.</p></div>'}
+ else if(f.classList.contains('cf')){await api(`/api/posts/${f.dataset.id}/comments`,{method:'POST',body:JSON.stringify(o)});await load()}}),true);
+document.addEventListener('change',run(async e=>{const f=e.target.files&&e.target.files[0];if(!f)return;
+ if(e.target.id==='avf'){const d=await shrink(f,320,true);$('#pf [name=avatar]').value=d;$('#avp').innerHTML=`<img class="av" style="width:72px;height:72px" src="${d}" alt="">`}
+ if(e.target.id==='pjf')$('#jf [name=image]').value=await shrink(f,800)}));
+document.addEventListener('click',run(async e=>{const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act,v=b.dataset.v;
+ if(a==='theme'){const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;try{localStorage.theme=t}catch{}}
+ else if(a==='tab'){tab=v;EP=null;render()}else if(a==='logout'){try{delete localStorage.tok}catch{}tok=null;D.ms=[];location.hash='#/'}
+ else if(a==='react'){const[id,kind]=v.split(':');await api(`/api/posts/${id}/react`,{method:'POST',body:JSON.stringify({visitor:vid,kind})});await load()}
+ else if(a==='ep'){EP=v;render();scrollTo(0,0)}else if(a==='cancel'){EP=null;render()}
+ else if(a==='dp'&&confirm('Delete this project?')){await api('/api/projects/'+v,{method:'DELETE'});await load()}
+ else if(a==='dpost'&&confirm('Delete this post?')){await api('/api/posts/'+v,{method:'DELETE'});await load()}
+ else if(a==='dc'){await api('/api/comments/'+v,{method:'DELETE'});await load()}
+ else if(a==='dm'&&confirm('Delete this message?')){await api('/api/messages/'+v,{method:'DELETE'});await load()}}));
+addEventListener('hashchange',()=>{render();scrollTo(0,0)});
+async function boot(){let c=null;try{c=JSON.parse(localStorage[CK]||'null')}catch{}if(c){D={p:c[0],pr:c[1],po:c[2],ms:[]};loaded=true}render();
  const n=$('#st');let err;for(let i=1;i<=12;i++){try{await load();n.hidden=true;return}catch(e){err=e;n.hidden=false;n.textContent=`Waiting for the server to wake up. The page will update by itself. (try ${i}/12) [${e.message}]`;await new Promise(r=>setTimeout(r,5000))}}
  n.textContent=`Could not reach the server (${err&&err.message}). Please refresh in a moment.`}
 boot();
