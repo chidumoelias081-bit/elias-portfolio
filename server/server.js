@@ -1,16 +1,21 @@
-const express = require('express'), cors = require('cors'), jwt = require('jsonwebtoken'),
-  multer = require('multer'), rate = require('express-rate-limit'), { Pool } = require('pg'),
-  cloud = require('cloudinary').v2; // reads CLOUDINARY_URL automatically
-const { DATABASE_URL, ADMIN_PASSWORD, JWT_SECRET, FRONTEND_URL = '*', PORT = 3000 } = process.env;
-const pool = new Pool({ connectionString: DATABASE_URL, ssl: { rejectUnauthorized: false } }); // Aiven needs SSL
-const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 80 * 1024 * 1024 } });
-const app = express();
-app.use(cors({ origin: FRONTEND_URL })); app.use(express.json({ limit: '200kb' }));
-const wrap = f => (q, s, n) => f(q, s, n).catch(e => { console.error(e); s.status(500).json({ error: 'Server error' }); });
-const admin = (q, s, n) => { try { jwt.verify((q.headers.authorization || '').slice(7), JWT_SECRET); n(); } catch { s.status(401).json({ error: 'Not authorised' }); } };
-const limit = rate({ windowMs: 60000, max: 15 });
-const q = (t, p) => pool.query(t, p).then(r => r.rows);
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
+const express = require('express'),
+  cors = require('cors'),
+  jwt = require('jsonwebtoken'),
+  multer = require('multer'),
+  rate = require('express-rate-limit'),
+  { Pool } = require('pg'),
+  cloud = require('cloudinary').v2;
+
+const { DATABASE_URL, ADMIN_PASSWORD, JWT_SECRET, FRONTEND_URL = '*', PORT = 3000 } = process.env;
+
+const pool = new Pool({
+  connectionString: DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 app.post('/api/login', rate({ windowMs: 900000, max: 10 }), (req, res) =>
   req.body.password && req.body.password === ADMIN_PASSWORD
     ? res.json({ token: jwt.sign({ a: 1 }, JWT_SECRET, { expiresIn: '7d' }) })
