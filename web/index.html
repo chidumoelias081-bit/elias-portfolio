@@ -117,7 +117,7 @@ function render(){const h=(location.hash.slice(1)||'/').replace(/\/$/,'')||'/',a
  const nav=[['/','Home'],['/about','About',hv('about')],['/projects','Projects',hv('projects')],['/updates','Updates',hv('feed')],['/contact','Contact',hv('contact')]].filter(x=>x[2]!==false);
  $('#nav').innerHTML=nav.map(([r,l])=>`<a href="#${r}" class="${h===r||(r==='/projects'&&m)?'on':''}">${l}</a>`).join('')+'<button class="ghost" data-act="theme" title="Light / dark">◐</button>';
  $('#view').innerHTML=m?detail(m[1]):gate&&!hv(gate)?'<section><h2>Not available</h2></section>':(pages[h]||pages['/'])();}
-async function load(){const r=await Promise.allSettled([api('/api/profile'),api('/api/projects'),api('/api/posts'),tok?api('/api/messages'):Promise.resolve([])]);const bad=r.find(x=>x.status==='rejected');
+async function load(){const r=await Promise.allSettled([api('/api/profile'),api('/api/projects'),api('/api/posts'),tok?api('/api/messages'):Promise.resolve([])]);const bad=r.slice(0,3).find(x=>x.status==='rejected'); // messages are optional and must never block the page
  if(r.slice(0,3).every(x=>x.status==='rejected'))throw bad.reason;
  const v=r.map((x,i)=>x.status==='fulfilled'?x.value:[D.p,D.pr,D.po,D.ms][i]);D={p:v[0],pr:v[1],po:v[2],ms:v[3]};loaded=true;
  if(tok&&r[3].status==='rejected'&&/authorised/i.test(r[3].reason.message)){try{delete localStorage.tok}catch{}tok=null}
