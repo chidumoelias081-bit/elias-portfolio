@@ -1,5 +1,23 @@
+const CK='pf_cache';
+async function load(){const[p,pr,po]=await Promise.all([api('/api/profile'),api('/api/projects'),api('/api/posts')]);
+ draw(p,pr,po);if(tok)fill(p);try{localStorage[CK]=JSON.stringify([p,pr,po])}catch{}}
+async function boot(){let c=null;try{c=JSON.parse(localStorage[CK]||'null')}catch{}
+ if(c){draw(...c);if(tok)fill(c[0])}
+ const n=$('#st');
+ for(let i=1;i<=12;i++){try{await load();n.hidden=true;return}catch{
+  n.hidden=false;n.textContent=`Starting the server after a quiet spell. This can take up to a minute, and the page will update by itself. (try ${i}/12)`;
+  await new Promise(r=>setTimeout(r,5000))}}
+ n.textContent='Could not reach the server. Please refresh in a moment.'}
+boot();
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Portfolio</title><meta name="description" content="Personal portfolio">
+<title>Elias Chidumo | Portfolio</title>
+<meta property="og:type" content="website"><meta property="og:title" content="Elias Chidumo | Portfolio">
+<meta property="og:description" content="Cloud Computing &amp; IoT student and full-stack developer. Projects, updates and contact links.">
+<meta property="og:url" content="https://elias-portfoli0.netlify.app"><meta property="og:image" content="https://elias-portfoli0.netlify.app/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0b2a3c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23c0362c'/%3E%3C/svg%3E">
+<meta name="description" content="Personal portfolio">
 <style>
 :root{--bg:#fff;--fg:#1b1f24;--mut:#5b6670;--card:#f3f6f8;--ac:#c0362c;--bd:#dde3e8}
 @media(prefers-color-scheme:dark){:root{--bg:#0f1418;--fg:#eef2f5;--mut:#9aa7b2;--card:#182027;--ac:#ff6a5c;--bd:#2a343d}}
@@ -18,7 +36,8 @@ small,.mut{color:var(--mut)}.adm,.del{display:none!important}.admin .adm{display
 </style></head><body>
 <header><b id="nm">Portfolio</b><nav><a href="#about">About</a><a href="#projects">Projects</a><a href="#feed">Updates</a><a href="#contact">Contact</a></nav></header>
 <main>
-<section id="hero"></section>
+<div id="st" class="card" hidden role="status"></div>
+<section id="hero"><h1>Elias Chidumo</h1><p class="lead">Cloud Computing &amp; IoT student | Full-stack developer</p><p class="mut">University of Zimbabwe</p></section>
 <details class="adm card"><summary><b>Edit profile</b></summary><form id="pf">
 <input name="name" placeholder="Full name"><input name="headline" placeholder="Headline, e.g. Full-stack developer | Data analyst">
 <input name="location" placeholder="Location"><input name="availability" placeholder="Availability, e.g. Open to work">
@@ -60,7 +79,6 @@ function draw(p,pr,po){
 const lines=(v)=>v.split('\n').map(l=>l.split('|').map(x=>x.trim())).filter(r=>r[0]);
 function fill(p){const f=$('#pf').elements;['name','headline','location','availability','resume','about'].forEach(k=>f[k].value=p[k]||'');
  f.skills.value=(p.skills||[]).join(', ');f.experience.value=(p.experience||[]).map(e=>[e.role,e.company,e.years,e.impact].join(' | ')).join('\n');f.links.value=(p.links||[]).map(l=>l.label+' | '+l.url).join('\n')}
-async function load(){const[p,pr,po]=await Promise.all([api('/api/profile'),api('/api/projects'),api('/api/posts')]);draw(p,pr,po);if(tok)fill(p)}
 const run=f=>async e=>{e.preventDefault();try{await f(e)}catch(x){alert(x.message);if(x.message==='Not authorised'){delete localStorage.tok;location.reload()}}};
 $('#pf').onsubmit=run(async e=>{const f=Object.fromEntries(new FormData(e.target));
  await api('/api/profile',{method:'PUT',body:JSON.stringify({...f,skills:f.skills.split(',').map(s=>s.trim()).filter(Boolean),experience:lines(f.experience).map(([role,company,years,impact])=>({role,company,years,impact})),links:lines(f.links).map(([label,url])=>({label,url}))})});load()});
