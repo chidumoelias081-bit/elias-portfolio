@@ -1,1 +1,1 @@
-const API_URL = "https://elias-portfolio-api.onrender.com";
+window.API_URL = "https://elias-portfolio-api.onrender.com";
