@@ -1,0 +1,80 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portfolio</title><meta name="description" content="Personal portfolio">
+<style>
+:root{--bg:#fff;--fg:#1b1f24;--mut:#5b6670;--card:#f3f6f8;--ac:#c0362c;--bd:#dde3e8}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1418;--fg:#eef2f5;--mut:#9aa7b2;--card:#182027;--ac:#ff6a5c;--bd:#2a343d}}
+*{box-sizing:border-box}body{margin:0;font:16px/1.6 system-ui,sans-serif;background:var(--bg);color:var(--fg)}
+header{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 24px;border-bottom:1px solid var(--bd);position:sticky;top:0;background:var(--bg);z-index:5}
+nav a{margin-left:16px;color:var(--fg);text-decoration:none}main{max-width:920px;margin:auto;padding:0 20px}section{padding:36px 0}
+h1{font-size:2.6rem;margin:.2em 0}h2{margin:0 0 16px}.lead{font-size:1.3rem;color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;margin-bottom:14px}.card img,.card video{width:100%;border-radius:8px;margin:8px 0}
+.chip{display:inline-block;background:var(--card);border:1px solid var(--bd);border-radius:99px;padding:2px 12px;margin:0 6px 6px 0;font-size:.85rem}.hot{background:var(--ac);color:#fff;border-color:var(--ac)}
+.btn,button{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:8px 16px;font:inherit;cursor:pointer;text-decoration:none;display:inline-block;margin:4px 6px 4px 0}
+button.ghost{background:transparent;color:var(--fg);border:1px solid var(--bd);padding:4px 12px}button.on{border-color:var(--ac)}
+input,textarea{width:100%;padding:8px;margin:4px 0;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--fg);font:inherit}textarea{min-height:70px}
+small,.mut{color:var(--mut)}.adm,.del{display:none!important}.admin .adm{display:block!important}.admin .del{display:inline-block!important}
+.cm{border-top:1px solid var(--bd);padding:6px 0;font-size:.95rem}footer{text-align:center;padding:30px;color:var(--mut)}
+</style></head><body>
+<header><b id="nm">Portfolio</b><nav><a href="#about">About</a><a href="#projects">Projects</a><a href="#feed">Updates</a><a href="#contact">Contact</a></nav></header>
+<main>
+<section id="hero"></section>
+<details class="adm card"><summary><b>Edit profile</b></summary><form id="pf">
+<input name="name" placeholder="Full name"><input name="headline" placeholder="Headline, e.g. Full-stack developer | Data analyst">
+<input name="location" placeholder="Location"><input name="availability" placeholder="Availability, e.g. Open to work">
+<input name="resume" placeholder="CV / résumé link (Google Drive, etc.)"><textarea name="about" placeholder="About you: who you are, what you build, the value you bring"></textarea>
+<input name="skills" placeholder="Skills, comma separated"><textarea name="experience" placeholder="One per line: Role | Company | Years | Measurable impact"></textarea>
+<textarea name="links" placeholder="One per line: Label | URL&#10;WhatsApp | https://wa.me/263XXXXXXXXX&#10;Email | mailto:you@mail.com&#10;LinkedIn | https://linkedin.com/in/you"></textarea>
+<button>Save profile</button></form></details>
+<section id="about"></section>
+<section id="projects"><h2>Projects</h2><div id="pl" class="grid"></div>
+<details class="adm card"><summary><b>Add project</b></summary><form id="jf">
+<input name="title" placeholder="Title" required><textarea name="summary" placeholder="What it is and the problem it solves"></textarea>
+<input name="outcome" placeholder="Result / impact, e.g. Cut reporting time by 60%"><input name="stack" placeholder="Tech stack, comma separated">
+<input name="demo" placeholder="Live demo URL"><input name="repo" placeholder="Code repository URL"><input name="image" placeholder="Screenshot / image URL">
+<button>Add project</button></form></details></section>
+<section id="feed"><h2>Updates</h2>
+<form id="nf" class="adm card"><textarea name="body" placeholder="Share an update…"></textarea><input type="file" name="media" accept="image/*,video/*"><button>Post</button></form>
+<div id="fl"></div></section>
+<section id="contact"><h2>Let's connect</h2><div id="links"></div></section>
+</main><footer><span id="yr"></span> · <a href="#" id="adl" class="mut">Admin</a></footer>
+<script src="config.js"></script>
+<script>
+const API=window.API_URL,$=s=>document.querySelector(s);let tok=localStorage.tok;const vid=localStorage.vid||(localStorage.vid=crypto.randomUUID());
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const U=u=>esc(/^(https?:|mailto:|tel:)/i.test(u||'')?u:'#');
+async function api(p,o={}){const h={};if(o.body&&!(o.body instanceof FormData))h['Content-Type']='application/json';if(tok)h.Authorization='Bearer '+tok;
+ const r=await fetch(API+p,{...o,headers:h});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'Request failed');return j}
+const R={like:'👍',love:'❤️',insightful:'💡'};
+function draw(p,pr,po){
+ document.title=p.name||'Portfolio';$('#nm').textContent=p.name||'Portfolio';$('#yr').textContent='© '+new Date().getFullYear()+' '+(p.name||'');
+ $('#hero').innerHTML=`<h1>${esc(p.name||'Your Name')}</h1><p class="lead">${esc(p.headline||'Your headline')}</p><p>${esc(p.location||'')} ${p.availability?`<span class="chip hot">${esc(p.availability)}</span>`:''}</p>${p.resume?`<a class="btn" href="${U(p.resume)}" target="_blank" rel="noopener">Download CV</a>`:''}<a class="btn" href="#contact">Contact me</a>`;
+ $('#about').innerHTML=`<h2>About</h2><p>${esc(p.about||'')}</p>${(p.skills||[]).map(s=>`<span class="chip">${esc(s)}</span>`).join('')}<h2 style="margin-top:24px">Experience</h2>${(p.experience||[]).map(e=>`<div class="card"><b>${esc(e.role)}</b> · ${esc(e.company)} <small>${esc(e.years)}</small><p>${esc(e.impact)}</p></div>`).join('')}`;
+ $('#links').innerHTML=(p.links||[]).map(l=>`<a class="btn" href="${U(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('')||'<p class="mut">No links yet.</p>';
+ $('#pl').innerHTML=pr.map(({id,data:d})=>`<div class="card">${d.image?`<img loading="lazy" src="${U(d.image)}" alt="${esc(d.title)}">`:''}<b>${esc(d.title)}</b><p>${esc(d.summary)}</p>${d.outcome?`<p><b>Impact:</b> ${esc(d.outcome)}</p>`:''}${(d.stack||'').split(',').filter(x=>x.trim()).map(s=>`<span class="chip">${esc(s.trim())}</span>`).join('')}<div>${d.demo?`<a class="btn" href="${U(d.demo)}" target="_blank" rel="noopener">Live demo</a>`:''}${d.repo?`<a class="btn" href="${U(d.repo)}" target="_blank" rel="noopener">Code</a>`:''}<button class="ghost del" data-dp="${id}">Delete</button></div></div>`).join('')||'<p class="mut">Projects coming soon.</p>';
+ $('#fl').innerHTML=po.map(x=>`<div class="card"><small>${new Date(x.created).toLocaleDateString()}</small> <button class="ghost del" data-dpost="${x.id}">Delete</button><p>${esc(x.body)}</p>${x.media_url?(x.media_type==='video'?`<video controls preload="metadata" src="${U(x.media_url)}"></video>`:`<img loading="lazy" src="${U(x.media_url)}" alt="">`):''}
+ <div>${Object.entries(R).map(([k,e])=>`<button class="ghost" data-react="${x.id}:${k}">${e} ${x.reactions[k]||0}</button>`).join(' ')}</div>
+ ${x.comments.map(c=>`<div class="cm"><b>${esc(c.name)}</b> <button class="ghost del" data-dc="${c.id}">×</button><br>${esc(c.body)}</div>`).join('')}
+ <form class="cf" data-id="${x.id}"><input name="name" placeholder="Your name" maxlength="60" required><input name="body" placeholder="Write a comment…" maxlength="1000" required><button>Comment</button></form></div>`).join('')||'<p class="mut">No updates yet.</p>';
+}
+const lines=(v)=>v.split('\n').map(l=>l.split('|').map(x=>x.trim())).filter(r=>r[0]);
+function fill(p){const f=$('#pf').elements;['name','headline','location','availability','resume','about'].forEach(k=>f[k].value=p[k]||'');
+ f.skills.value=(p.skills||[]).join(', ');f.experience.value=(p.experience||[]).map(e=>[e.role,e.company,e.years,e.impact].join(' | ')).join('\n');f.links.value=(p.links||[]).map(l=>l.label+' | '+l.url).join('\n')}
+async function load(){const[p,pr,po]=await Promise.all([api('/api/profile'),api('/api/projects'),api('/api/posts')]);draw(p,pr,po);if(tok)fill(p)}
+const run=f=>async e=>{e.preventDefault();try{await f(e)}catch(x){alert(x.message);if(x.message==='Not authorised'){delete localStorage.tok;location.reload()}}};
+$('#pf').onsubmit=run(async e=>{const f=Object.fromEntries(new FormData(e.target));
+ await api('/api/profile',{method:'PUT',body:JSON.stringify({...f,skills:f.skills.split(',').map(s=>s.trim()).filter(Boolean),experience:lines(f.experience).map(([role,company,years,impact])=>({role,company,years,impact})),links:lines(f.links).map(([label,url])=>({label,url}))})});load()});
+$('#jf').onsubmit=run(async e=>{await api('/api/projects',{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});e.target.reset();load()});
+$('#nf').onsubmit=run(async e=>{const b=e.target.querySelector('button');b.disabled=true;try{await api('/api/posts',{method:'POST',body:new FormData(e.target)});e.target.reset();await load()}finally{b.disabled=false}});
+document.addEventListener('submit',run(async e=>{if(!e.target.classList.contains('cf'))return;
+ await api(`/api/posts/${e.target.dataset.id}/comments`,{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});load()}),true);
+document.addEventListener('click',run(async e=>{const d=e.target.dataset||{};
+ if(d.react){const[id,kind]=d.react.split(':');await api(`/api/posts/${id}/react`,{method:'POST',body:JSON.stringify({visitor:vid,kind})});load()}
+ else if(d.dp&&confirm('Delete project?')){await api('/api/projects/'+d.dp,{method:'DELETE'});load()}
+ else if(d.dpost&&confirm('Delete post?')){await api('/api/posts/'+d.dpost,{method:'DELETE'});load()}
+ else if(d.dc){await api('/api/comments/'+d.dc,{method:'DELETE'});load()}}));
+$('#adl').textContent=tok?'Log out':'Admin';document.body.classList.toggle('admin',!!tok);
+$('#adl').onclick=run(async e=>{e.preventDefault();if(tok){delete localStorage.tok;location.reload();return}
+ const pw=prompt('Admin password');if(!pw)return;localStorage.tok=(await api('/api/login',{method:'POST',body:JSON.stringify({password:pw})})).token;location.reload()});
+load().catch(()=>{$('#hero').innerHTML='<h1>Waking up…</h1><p class="mut">The server is starting, please refresh in a few seconds.</p>'});
+</script></body></html>
