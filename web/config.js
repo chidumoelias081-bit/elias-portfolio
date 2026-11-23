@@ -1,2 +1,1 @@
-// After deploying the API on Render, put its URL here (no trailing slash)
-window.API_URL = 'http://localhost:3000';
+const API_URL = "https://elias-portfolio-api.onrender.com";
