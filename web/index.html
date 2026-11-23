@@ -1,14 +1,3 @@
-const CK='pf_cache';
-async function load(){const[p,pr,po]=await Promise.all([api('/api/profile'),api('/api/projects'),api('/api/posts')]);
- draw(p,pr,po);if(tok)fill(p);try{localStorage[CK]=JSON.stringify([p,pr,po])}catch{}}
-async function boot(){let c=null;try{c=JSON.parse(localStorage[CK]||'null')}catch{}
- if(c){draw(...c);if(tok)fill(c[0])}
- const n=$('#st');
- for(let i=1;i<=12;i++){try{await load();n.hidden=true;return}catch{
-  n.hidden=false;n.textContent=`Starting the server after a quiet spell. This can take up to a minute, and the page will update by itself. (try ${i}/12)`;
-  await new Promise(r=>setTimeout(r,5000))}}
- n.textContent='Could not reach the server. Please refresh in a moment.'}
-boot();
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Elias Chidumo | Portfolio</title>
 <meta property="og:type" content="website"><meta property="og:title" content="Elias Chidumo | Portfolio">
@@ -94,5 +83,15 @@ document.addEventListener('click',run(async e=>{const d=e.target.dataset||{};
 $('#adl').textContent=tok?'Log out':'Admin';document.body.classList.toggle('admin',!!tok);
 $('#adl').onclick=run(async e=>{e.preventDefault();if(tok){delete localStorage.tok;location.reload();return}
  const pw=prompt('Admin password');if(!pw)return;localStorage.tok=(await api('/api/login',{method:'POST',body:JSON.stringify({password:pw})})).token;location.reload()});
-load().catch(()=>{$('#hero').innerHTML='<h1>Waking up…</h1><p class="mut">The server is starting, please refresh in a few seconds.</p>'});
+const CK='pf_cache';
+async function load(){const[p,pr,po]=await Promise.all([api('/api/profile'),api('/api/projects'),api('/api/posts')]);
+ draw(p,pr,po);if(tok)fill(p);try{localStorage[CK]=JSON.stringify([p,pr,po])}catch{}}
+async function boot(){let c=null;try{c=JSON.parse(localStorage[CK]||'null')}catch{}
+ if(c){draw(...c);if(tok)fill(c[0])}
+ const n=$('#st');
+ for(let i=1;i<=12;i++){try{await load();n.hidden=true;return}catch{
+  n.hidden=false;n.textContent=`Starting the server after a quiet spell. This can take up to a minute, and the page will update by itself. (try ${i}/12)`;
+  await new Promise(r=>setTimeout(r,5000))}}
+ n.textContent='Could not reach the server. Please refresh in a moment.'}
+boot();
 </script></body></html>
