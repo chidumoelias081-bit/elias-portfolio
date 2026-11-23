@@ -1,97 +1,142 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Elias Chidumo | Portfolio</title>
+<title>Elias Chidumo | Portfolio</title><meta name="description" content="Personal portfolio">
 <meta property="og:type" content="website"><meta property="og:title" content="Elias Chidumo | Portfolio">
 <meta property="og:description" content="Cloud Computing &amp; IoT student and full-stack developer. Projects, updates and contact links.">
 <meta property="og:url" content="https://elias-portfoli0.netlify.app"><meta property="og:image" content="https://elias-portfoli0.netlify.app/og.png">
-<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0b2a3c">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23c0362c'/%3E%3C/svg%3E">
-<meta name="description" content="Personal portfolio">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" media="print" onload="this.media='all'">
+<script>document.documentElement.classList.add('js');try{document.documentElement.dataset.theme=localStorage.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch{}</script>
 <style>
-:root{--bg:#fff;--fg:#1b1f24;--mut:#5b6670;--card:#f3f6f8;--ac:#c0362c;--bd:#dde3e8}
-@media(prefers-color-scheme:dark){:root{--bg:#0f1418;--fg:#eef2f5;--mut:#9aa7b2;--card:#182027;--ac:#ff6a5c;--bd:#2a343d}}
-*{box-sizing:border-box}body{margin:0;font:16px/1.6 system-ui,sans-serif;background:var(--bg);color:var(--fg)}
-header{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 24px;border-bottom:1px solid var(--bd);position:sticky;top:0;background:var(--bg);z-index:5}
-nav a{margin-left:16px;color:var(--fg);text-decoration:none}main{max-width:920px;margin:auto;padding:0 20px}section{padding:36px 0}
-h1{font-size:2.6rem;margin:.2em 0}h2{margin:0 0 16px}.lead{font-size:1.3rem;color:var(--mut)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;margin-bottom:14px}.card img,.card video{width:100%;border-radius:8px;margin:8px 0}
-.chip{display:inline-block;background:var(--card);border:1px solid var(--bd);border-radius:99px;padding:2px 12px;margin:0 6px 6px 0;font-size:.85rem}.hot{background:var(--ac);color:#fff;border-color:var(--ac)}
-.btn,button{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:8px 16px;font:inherit;cursor:pointer;text-decoration:none;display:inline-block;margin:4px 6px 4px 0}
-button.ghost{background:transparent;color:var(--fg);border:1px solid var(--bd);padding:4px 12px}button.on{border-color:var(--ac)}
-input,textarea{width:100%;padding:8px;margin:4px 0;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--fg);font:inherit}textarea{min-height:70px}
-small,.mut{color:var(--mut)}.adm,.del{display:none!important}.admin .adm{display:block!important}.admin .del{display:inline-block!important}
-.cm{border-top:1px solid var(--bd);padding:6px 0;font-size:.95rem}footer{text-align:center;padding:30px;color:var(--mut)}
+:root{--bf:'Inter',system-ui,-apple-system,sans-serif;--hf:'Playfair Display',Georgia,serif;--bg:#faf8f5;--fg:#1a1d21;--mut:#6b7280;--card:#fff;--bd:#e8e3da;--ac:#c0362c;--sh:0 10px 30px rgba(20,20,30,.08)}
+[data-theme=dark]{--bg:#0d1117;--fg:#eceff3;--mut:#98a2b0;--card:#151b23;--bd:#232c37;--sh:0 10px 30px rgba(0,0,0,.4)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}body{margin:0;font:16px/1.7 var(--bf);background:var(--bg);color:var(--fg)}
+h1,h2,h3{font-family:var(--hf);line-height:1.15;margin:0}h3{font-size:1.2rem}
+header{position:sticky;top:0;z-index:9;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 28px;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd)}
+.logo{font:700 1.2rem var(--hf);color:var(--fg);text-decoration:none}nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+nav a{color:var(--mut);text-decoration:none;padding:6px 12px;border-radius:99px;font-size:.92rem}nav a:hover{color:var(--fg);background:var(--card)}
+main{max-width:980px;margin:auto;padding:0 22px}section{padding:52px 0}
+h2{font-size:2rem;margin-bottom:24px}h2:after{content:"";display:block;width:44px;height:3px;background:var(--ac);margin-top:10px;border-radius:3px}
+.hero{display:flex;gap:38px;align-items:center;flex-wrap:wrap;padding:64px 0 14px;background:radial-gradient(50% 60% at 90% 0,color-mix(in srgb,var(--ac) 16%,transparent),transparent)}
+.av{width:172px;height:172px;border-radius:50%;object-fit:cover;border:4px solid var(--bg);box-shadow:0 0 0 3px var(--ac),var(--sh)}
+.eyebrow{letter-spacing:.15em;text-transform:uppercase;font-size:.78rem;color:var(--ac);font-weight:600}
+h1{font-size:clamp(2.4rem,6vw,4rem);margin:6px 0 12px}.lead{font-size:1.2rem;color:var(--mut);max-width:580px;margin:0 0 16px}
+.pill{display:inline-block;border:1px solid var(--ac);color:var(--ac);border-radius:99px;padding:3px 14px;font-size:.85rem;font-weight:600;margin-bottom:12px}
+.btn,button{background:var(--ac);color:#fff;border:0;border-radius:99px;padding:10px 22px;font:600 .95rem var(--bf);cursor:pointer;text-decoration:none;display:inline-block;transition:.2s}
+.btn:hover,button:hover{transform:translateY(-2px);box-shadow:var(--sh)}.ghost{background:transparent;color:var(--fg);border:1px solid var(--bd)}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 16px}.socs{display:flex;gap:8px;flex-wrap:wrap}
+.soc{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--bd);background:var(--card);color:var(--fg);padding:6px 14px 6px 8px;border-radius:99px;text-decoration:none;font-size:.9rem;transition:.2s}
+.soc:hover{border-color:var(--ac);transform:translateY(-2px)}.soc i{font-style:normal;width:26px;height:26px;border-radius:50%;background:var(--ac);color:#fff;display:grid;place-items:center;font-size:.78rem;font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:26px}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:18px;text-align:center;color:var(--mut);font-size:.9rem}.stat b{display:block;font:700 2.1rem var(--hf);color:var(--ac)}
+.pre{white-space:pre-line}.chip{display:inline-block;background:var(--card);border:1px solid var(--bd);border-radius:99px;padding:3px 14px;margin:0 8px 8px 0;font-size:.85rem}
+.tl{border-left:2px solid var(--bd);padding-left:24px}.it{position:relative;margin-bottom:26px}.it:before{content:"";position:absolute;left:-31px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--ac);box-shadow:0 0 0 4px var(--bg)}.it p{margin:6px 0 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;overflow:hidden;box-shadow:var(--sh);transition:.25s}.pj:hover{transform:translateY(-5px)}
+.pimg{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}.pb{padding:18px}.pb p{color:var(--mut);margin:8px 0}
+.post{padding:20px;margin-bottom:18px}.post img,.post video{width:100%;border-radius:12px;margin:10px 0}.mut,small{color:var(--mut)}
+.rx{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.rx button,.ghost{padding:5px 14px;font-size:.88rem}
+.cm{border-top:1px solid var(--bd);padding:8px 0;font-size:.95rem}
+input,textarea,select{width:100%;padding:10px 12px;margin:5px 0;border:1px solid var(--bd);border-radius:12px;background:var(--bg);color:var(--fg);font:inherit}textarea{min-height:76px}input[type=color]{height:42px;padding:3px}input[type=checkbox]{width:auto;margin-right:4px}
+.panel{background:var(--card);border:1px dashed var(--ac);border-radius:16px;padding:14px 18px;margin:18px 0}.panel summary{cursor:pointer;font-weight:600;color:var(--ac)}.row{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.row label{font-size:.85rem;color:var(--mut)}
+.note{max-width:980px;margin:12px auto;padding:10px 16px;border-radius:12px;background:var(--card);border:1px solid var(--bd);font-size:.9rem;color:var(--mut)}
+.adm,.admi{display:none!important}.admin .adm{display:block!important}.admin .admi{display:inline-block!important}
+.js .rv{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}.js .rv.in{opacity:1;transform:none}
+footer{text-align:center;padding:36px;color:var(--mut);font-size:.9rem}footer a{color:var(--mut)}@media(max-width:560px){.row{grid-template-columns:1fr}header{padding:10px 16px}.hero{padding-top:36px}}
 </style></head><body>
-<header><b id="nm">Portfolio</b><nav><a href="#about">About</a><a href="#projects">Projects</a><a href="#feed">Updates</a><a href="#contact">Contact</a></nav></header>
-<main>
-<div id="st" class="card" hidden role="status"></div>
-<section id="hero"><h1>Elias Chidumo</h1><p class="lead">Cloud Computing &amp; IoT student | Full-stack developer</p><p class="mut">University of Zimbabwe</p></section>
-<details class="adm card"><summary><b>Edit profile</b></summary><form id="pf">
-<input name="name" placeholder="Full name"><input name="headline" placeholder="Headline, e.g. Full-stack developer | Data analyst">
-<input name="location" placeholder="Location"><input name="availability" placeholder="Availability, e.g. Open to work">
-<input name="resume" placeholder="CV / résumé link (Google Drive, etc.)"><textarea name="about" placeholder="About you: who you are, what you build, the value you bring"></textarea>
-<input name="skills" placeholder="Skills, comma separated"><textarea name="experience" placeholder="One per line: Role | Company | Years | Measurable impact"></textarea>
-<textarea name="links" placeholder="One per line: Label | URL&#10;WhatsApp | https://wa.me/263XXXXXXXXX&#10;Email | mailto:you@mail.com&#10;LinkedIn | https://linkedin.com/in/you"></textarea>
-<button>Save profile</button></form></details>
-<section id="about"></section>
-<section id="projects"><h2>Projects</h2><div id="pl" class="grid"></div>
-<details class="adm card"><summary><b>Add project</b></summary><form id="jf">
-<input name="title" placeholder="Title" required><textarea name="summary" placeholder="What it is and the problem it solves"></textarea>
-<input name="outcome" placeholder="Result / impact, e.g. Cut reporting time by 60%"><input name="stack" placeholder="Tech stack, comma separated">
-<input name="demo" placeholder="Live demo URL"><input name="repo" placeholder="Code repository URL"><input name="image" placeholder="Screenshot / image URL">
-<button>Add project</button></form></details></section>
-<section id="feed"><h2>Updates</h2>
-<form id="nf" class="adm card"><textarea name="body" placeholder="Share an update…"></textarea><input type="file" name="media" accept="image/*,video/*"><button>Post</button></form>
-<div id="fl"></div></section>
-<section id="contact"><h2>Let's connect</h2><div id="links"></div></section>
-</main><footer><span id="yr"></span> · <a href="#" id="adl" class="mut">Admin</a></footer>
+<header><a class="logo" href="#top" id="nm">Portfolio</a><nav><a href="#about">About</a><a href="#projects">Projects</a><a href="#feed">Updates</a><a href="#contact">Contact</a><button class="ghost" id="th" title="Light / dark">◐</button></nav></header>
+<div id="st" class="note" hidden role="status"></div>
+<main id="top">
+<section id="hero" style="padding-top:0"><div class="hero"><div><div class="eyebrow">University of Zimbabwe</div><h1>Elias Chidumo</h1><p class="lead">Cloud Computing &amp; IoT student | Full-stack developer</p></div></div></section>
+<div id="stats" class="stats"></div>
+<details class="adm panel"><summary>✎ Edit profile &amp; appearance</summary><form id="pf">
+<div class="row"><div><label>Full name</label><input name="name"></div><div><label>Headline</label><input name="headline" placeholder="e.g. Cloud engineer | Full-stack developer"></div>
+<div><label>Location</label><input name="location"></div><div><label>Availability badge</label><input name="availability" placeholder="Open to internships"></div>
+<div><label>CV / résumé link</label><input name="resume"></div><div><label>Profile photo</label><input type="file" id="avf" accept="image/*"><input type="hidden" name="avatar"></div>
+<div><label>Accent colour</label><input type="color" name="accent" value="#c0362c"></div><div><label>Heading style</label><select name="font"><option value="serif">Elegant serif</option><option value="sans">Clean sans-serif</option></select></div></div>
+<label>About you</label><textarea name="about" placeholder="Who you are, what you build, the value you bring"></textarea>
+<label>Skills (comma separated)</label><input name="skills">
+<label>Highlights, one per line: Value | Label &nbsp;(e.g. 5 | Projects built)</label><textarea name="stats"></textarea>
+<label>Experience, one per line: Role | Company | Years | Impact</label><textarea name="experience"></textarea>
+<label>Education, one per line: Degree | School | Years</label><textarea name="education"></textarea>
+<label>Links, one per line: Label | URL (WhatsApp | https://wa.me/263…, Email | mailto:you@mail.com, LinkedIn | …)</label><textarea name="links"></textarea>
+<label>Sections to hide from visitors</label><div><label><input type="checkbox" name="hide" value="about">About</label> <label><input type="checkbox" name="hide" value="exp">Experience</label> <label><input type="checkbox" name="hide" value="edu">Education</label> <label><input type="checkbox" name="hide" value="projects">Projects</label> <label><input type="checkbox" name="hide" value="feed">Updates</label></div>
+<p><button>Save changes</button></p></form></details>
+<section id="about" class="rv"></section><section id="exp" class="rv"></section><section id="edu" class="rv"></section>
+<section id="projects" class="rv"><h2>Projects</h2><div id="pl" class="grid"></div>
+<details class="adm panel"><summary>＋ Add or edit a project</summary><form id="jf"><input name="title" placeholder="Title" required><textarea name="summary" placeholder="What it is and the problem it solves"></textarea>
+<input name="outcome" placeholder="Result / impact, e.g. cut reporting time by 60%"><input name="stack" placeholder="Tech stack, comma separated"><div class="row"><input name="demo" placeholder="Live demo URL"><input name="repo" placeholder="Code repository URL"></div>
+<label class="mut">Screenshot</label><input type="file" id="pjf" accept="image/*"><input type="hidden" name="image"><p><button id="jb">Add project</button></p></form></details></section>
+<section id="feed" class="rv"><h2>Updates</h2><form id="nf" class="adm panel"><textarea name="body" placeholder="Share an update…"></textarea><input type="file" name="media" accept="image/*,video/*"><small>Photo and video upload needs media storage on the server.</small><p><button>Post</button></p></form><div id="fl"></div></section>
+<section id="contact" class="rv"></section>
+</main><footer><span id="yr"></span> · <a href="#" id="adl">Admin</a></footer>
 <script src="config.js"></script>
 <script>
-const API=window.API_URL,$=s=>document.querySelector(s);let tok=localStorage.tok;const vid=localStorage.vid||(localStorage.vid=crypto.randomUUID());
+const API=window.API_URL,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];let tok;try{tok=localStorage.tok}catch{}
+const vid=(()=>{try{return localStorage.vid||(localStorage.vid=crypto.randomUUID())}catch{return'anon'}})();
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const U=u=>esc(/^(https?:|mailto:|tel:)/i.test(u||'')?u:'#');
+const U=u=>esc(/^(https?:|mailto:|tel:)/i.test(u||'')?u:'#'),I=u=>esc(/^(https?:|data:image\/(jpeg|png|webp);base64,)/i.test(u||'')?u:'');
+const G=l=>{l=String(l).toLowerCase();return/whats/.test(l)?'W':/mail/.test(l)?'@':/linked/.test(l)?'in':/git/.test(l)?'GH':/^x$|twitter/.test(l)?'X':/face/.test(l)?'f':/insta/.test(l)?'IG':/you/.test(l)?'▶':'↗'};
 async function api(p,o={}){const h={};if(o.body&&!(o.body instanceof FormData))h['Content-Type']='application/json';if(tok)h.Authorization='Bearer '+tok;
  const r=await fetch(API+p,{...o,headers:h});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'Request failed');return j}
-const R={like:'👍',love:'❤️',insightful:'💡'};
+const R={like:'👍',love:'❤️',insightful:'💡'};let PJ={},C=null;
 function draw(p,pr,po){
- document.title=p.name||'Portfolio';$('#nm').textContent=p.name||'Portfolio';$('#yr').textContent='© '+new Date().getFullYear()+' '+(p.name||'');
- $('#hero').innerHTML=`<h1>${esc(p.name||'Your Name')}</h1><p class="lead">${esc(p.headline||'Your headline')}</p><p>${esc(p.location||'')} ${p.availability?`<span class="chip hot">${esc(p.availability)}</span>`:''}</p>${p.resume?`<a class="btn" href="${U(p.resume)}" target="_blank" rel="noopener">Download CV</a>`:''}<a class="btn" href="#contact">Contact me</a>`;
- $('#about').innerHTML=`<h2>About</h2><p>${esc(p.about||'')}</p>${(p.skills||[]).map(s=>`<span class="chip">${esc(s)}</span>`).join('')}<h2 style="margin-top:24px">Experience</h2>${(p.experience||[]).map(e=>`<div class="card"><b>${esc(e.role)}</b> · ${esc(e.company)} <small>${esc(e.years)}</small><p>${esc(e.impact)}</p></div>`).join('')}`;
- $('#links').innerHTML=(p.links||[]).map(l=>`<a class="btn" href="${U(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('')||'<p class="mut">No links yet.</p>';
- $('#pl').innerHTML=pr.map(({id,data:d})=>`<div class="card">${d.image?`<img loading="lazy" src="${U(d.image)}" alt="${esc(d.title)}">`:''}<b>${esc(d.title)}</b><p>${esc(d.summary)}</p>${d.outcome?`<p><b>Impact:</b> ${esc(d.outcome)}</p>`:''}${(d.stack||'').split(',').filter(x=>x.trim()).map(s=>`<span class="chip">${esc(s.trim())}</span>`).join('')}<div>${d.demo?`<a class="btn" href="${U(d.demo)}" target="_blank" rel="noopener">Live demo</a>`:''}${d.repo?`<a class="btn" href="${U(d.repo)}" target="_blank" rel="noopener">Code</a>`:''}<button class="ghost del" data-dp="${id}">Delete</button></div></div>`).join('')||'<p class="mut">Projects coming soon.</p>';
- $('#fl').innerHTML=po.map(x=>`<div class="card"><small>${new Date(x.created).toLocaleDateString()}</small> <button class="ghost del" data-dpost="${x.id}">Delete</button><p>${esc(x.body)}</p>${x.media_url?(x.media_type==='video'?`<video controls preload="metadata" src="${U(x.media_url)}"></video>`:`<img loading="lazy" src="${U(x.media_url)}" alt="">`):''}
- <div>${Object.entries(R).map(([k,e])=>`<button class="ghost" data-react="${x.id}:${k}">${e} ${x.reactions[k]||0}</button>`).join(' ')}</div>
- ${x.comments.map(c=>`<div class="cm"><b>${esc(c.name)}</b> <button class="ghost del" data-dc="${c.id}">×</button><br>${esc(c.body)}</div>`).join('')}
+ const S=document.documentElement.style,hide=p.hide||[];
+ /^#[0-9a-f]{6}$/i.test(p.accent||'')?S.setProperty('--ac',p.accent):S.removeProperty('--ac');p.font==='sans'?S.setProperty('--hf','var(--bf)'):S.removeProperty('--hf');
+ ['about','exp','edu','projects','feed','contact'].forEach(id=>$('#'+id).style.display=!tok&&hide.includes(id)?'none':'');
+ const soc=(p.links||[]).map(l=>`<a class="soc" href="${U(l.url)}" target="_blank" rel="noopener"><i>${G(l.label)}</i>${esc(l.label)}</a>`).join('');
+ document.title=(p.name||'Portfolio')+' | Portfolio';$('#nm').textContent=p.name||'Portfolio';$('#yr').textContent='© '+new Date().getFullYear()+' '+(p.name||'');
+ $('#hero').innerHTML=`<div class="hero">${p.avatar?`<img class="av" src="${I(p.avatar)}" alt="">`:''}<div><div class="eyebrow">${esc(p.location||'')}</div><h1>${esc(p.name||'Your Name')}</h1><p class="lead">${esc(p.headline||'Your headline')}</p>${p.availability?`<span class="pill">● ${esc(p.availability)}</span>`:''}<div class="cta">${p.resume?`<a class="btn" href="${U(p.resume)}" target="_blank" rel="noopener">Download CV</a>`:''}<a class="btn ghost" href="#contact">Contact me</a></div><div class="socs">${soc}</div></div></div>`;
+ $('#stats').innerHTML=(p.stats||[]).map(s=>`<div class="stat"><b>${esc(s.value)}</b>${esc(s.label)}</div>`).join('');
+ $('#about').innerHTML=`<h2>About</h2><p class="pre">${esc(p.about||'Tell visitors who you are using the edit panel.')}</p>${(p.skills||[]).map(s=>`<span class="chip">${esc(s)}</span>`).join('')}`;
+ const tl=(h,a,f)=>`<h2>${h}</h2><div class="tl">${a.map(f).join('')||'<p class="mut">Nothing here yet.</p>'}</div>`;
+ $('#exp').innerHTML=tl('Experience',p.experience||[],e=>`<div class="it"><h3>${esc(e.role)}</h3><div class="mut">${esc(e.company)} · ${esc(e.years)}</div><p>${esc(e.impact)}</p></div>`);
+ $('#edu').innerHTML=tl('Education',p.education||[],e=>`<div class="it"><h3>${esc(e.degree)}</h3><div class="mut">${esc(e.school)} · ${esc(e.years)}</div></div>`);
+ PJ={};$('#pl').innerHTML=pr.map(({id,data:d})=>{PJ[id]=d;return`<article class="card pj">${d.image?`<img class="pimg" loading="lazy" src="${I(d.image)}" alt="">`:''}<div class="pb"><h3>${esc(d.title)}</h3><p>${esc(d.summary)}</p>${d.outcome?`<p><b>Impact:</b> ${esc(d.outcome)}</p>`:''}${(d.stack||'').split(',').filter(x=>x.trim()).map(s=>`<span class="chip">${esc(s.trim())}</span>`).join('')}<div class="cta">${d.demo?`<a class="btn" href="${U(d.demo)}" target="_blank" rel="noopener">Live demo</a>`:''}${d.repo?`<a class="btn ghost" href="${U(d.repo)}" target="_blank" rel="noopener">Code</a>`:''}<button class="ghost admi" data-ep="${id}">Edit</button><button class="ghost admi" data-dp="${id}">Delete</button></div></div></article>`}).join('')||'<p class="mut">Projects coming soon.</p>';
+ $('#fl').innerHTML=po.map(x=>`<div class="card post"><small>${new Date(x.created).toLocaleDateString()}</small> <button class="ghost admi" data-dpost="${x.id}">Delete</button><p>${esc(x.body)}</p>${x.media_url?(x.media_type==='video'?`<video controls preload="metadata" src="${I(x.media_url)}"></video>`:`<img loading="lazy" src="${I(x.media_url)}" alt="">`):''}
+ <div class="rx">${Object.entries(R).map(([k,e])=>`<button class="ghost" data-react="${x.id}:${k}">${e} ${x.reactions[k]||0}</button>`).join('')}</div>
+ ${x.comments.map(c=>`<div class="cm"><b>${esc(c.name)}</b> <button class="ghost admi" data-dc="${c.id}">×</button><br>${esc(c.body)}</div>`).join('')}
  <form class="cf" data-id="${x.id}"><input name="name" placeholder="Your name" maxlength="60" required><input name="body" placeholder="Write a comment…" maxlength="1000" required><button>Comment</button></form></div>`).join('')||'<p class="mut">No updates yet.</p>';
+ $('#contact').innerHTML=`<h2>Let's connect</h2><p class="lead">Open to opportunities, collaborations and good conversations.</p><div class="socs">${soc||'<span class="mut">Add your links in the edit panel.</span>'}</div>`;
 }
-const lines=(v)=>v.split('\n').map(l=>l.split('|').map(x=>x.trim())).filter(r=>r[0]);
-function fill(p){const f=$('#pf').elements;['name','headline','location','availability','resume','about'].forEach(k=>f[k].value=p[k]||'');
- f.skills.value=(p.skills||[]).join(', ');f.experience.value=(p.experience||[]).map(e=>[e.role,e.company,e.years,e.impact].join(' | ')).join('\n');f.links.value=(p.links||[]).map(l=>l.label+' | '+l.url).join('\n')}
-const run=f=>async e=>{e.preventDefault();try{await f(e)}catch(x){alert(x.message);if(x.message==='Not authorised'){delete localStorage.tok;location.reload()}}};
-$('#pf').onsubmit=run(async e=>{const f=Object.fromEntries(new FormData(e.target));
- await api('/api/profile',{method:'PUT',body:JSON.stringify({...f,skills:f.skills.split(',').map(s=>s.trim()).filter(Boolean),experience:lines(f.experience).map(([role,company,years,impact])=>({role,company,years,impact})),links:lines(f.links).map(([label,url])=>({label,url}))})});load()});
-$('#jf').onsubmit=run(async e=>{await api('/api/projects',{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});e.target.reset();load()});
-$('#nf').onsubmit=run(async e=>{const b=e.target.querySelector('button');b.disabled=true;try{await api('/api/posts',{method:'POST',body:new FormData(e.target)});e.target.reset();await load()}finally{b.disabled=false}});
-document.addEventListener('submit',run(async e=>{if(!e.target.classList.contains('cf'))return;
- await api(`/api/posts/${e.target.dataset.id}/comments`,{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});load()}),true);
-document.addEventListener('click',run(async e=>{const d=e.target.dataset||{};
- if(d.react){const[id,kind]=d.react.split(':');await api(`/api/posts/${id}/react`,{method:'POST',body:JSON.stringify({visitor:vid,kind})});load()}
- else if(d.dp&&confirm('Delete project?')){await api('/api/projects/'+d.dp,{method:'DELETE'});load()}
- else if(d.dpost&&confirm('Delete post?')){await api('/api/posts/'+d.dpost,{method:'DELETE'});load()}
- else if(d.dc){await api('/api/comments/'+d.dc,{method:'DELETE'});load()}}));
-$('#adl').textContent=tok?'Log out':'Admin';document.body.classList.toggle('admin',!!tok);
-$('#adl').onclick=run(async e=>{e.preventDefault();if(tok){delete localStorage.tok;location.reload();return}
- const pw=prompt('Admin password');if(!pw)return;localStorage.tok=(await api('/api/login',{method:'POST',body:JSON.stringify({password:pw})})).token;location.reload()});
+const lines=v=>v.split('\n').map(l=>l.split('|').map(x=>x.trim())).filter(r=>r[0]);
+function fill(p){const f=$('#pf').elements;['name','headline','location','availability','resume','about','avatar'].forEach(k=>f[k].value=p[k]||'');
+ f.skills.value=(p.skills||[]).join(', ');f.stats.value=(p.stats||[]).map(s=>s.value+' | '+s.label).join('\n');
+ f.experience.value=(p.experience||[]).map(e=>[e.role,e.company,e.years,e.impact].join(' | ')).join('\n');f.education.value=(p.education||[]).map(e=>[e.degree,e.school,e.years].join(' | ')).join('\n');
+ f.links.value=(p.links||[]).map(l=>l.label+' | '+l.url).join('\n');f.accent.value=/^#[0-9a-f]{6}$/i.test(p.accent||'')?p.accent:'#c0362c';f.font.value=p.font||'serif';
+ $$('#pf [name=hide]').forEach(c=>c.checked=(p.hide||[]).includes(c.value))}
 const CK='pf_cache';
-async function load(){const[p,pr,po]=await Promise.all([api('/api/profile'),api('/api/projects'),api('/api/posts')]);
- draw(p,pr,po);if(tok)fill(p);try{localStorage[CK]=JSON.stringify([p,pr,po])}catch{}}
-async function boot(){let c=null;try{c=JSON.parse(localStorage[CK]||'null')}catch{}
- if(c){draw(...c);if(tok)fill(c[0])}
- const n=$('#st');
- for(let i=1;i<=12;i++){try{await load();n.hidden=true;return}catch{
-  n.hidden=false;n.textContent=`Starting the server after a quiet spell. This can take up to a minute, and the page will update by itself. (try ${i}/12)`;
-  await new Promise(r=>setTimeout(r,5000))}}
- n.textContent='Could not reach the server. Please refresh in a moment.'}
+async function load(){const r=await Promise.allSettled([api('/api/profile'),api('/api/projects'),api('/api/posts')]);const bad=r.find(x=>x.status==='rejected');
+ if(r.every(x=>x.status==='rejected'))throw bad.reason;
+ const v=r.map((x,i)=>x.status==='fulfilled'?x.value:(C?C[i]:[{},[],[]][i]));draw(...v);if(tok&&r[0].status==='fulfilled')fill(v[0]);
+ if(bad)throw bad.reason;C=v;try{localStorage[CK]=JSON.stringify(v)}catch{}}
+const run=f=>async e=>{e.preventDefault();try{await f(e)}catch(x){alert(x.message);if(x.message==='Not authorised'){try{delete localStorage.tok}catch{}location.reload()}}};
+const shrink=(file,max,sq)=>new Promise((ok,no)=>{const im=new Image();im.onload=()=>{let w=im.width,h=im.height,sx=0,sy=0,sw=w,sh=h;
+ if(sq){const m=Math.min(w,h);sx=(w-m)/2;sy=(h-m)/2;sw=sh=m;w=h=Math.min(max,m)}else{const k=Math.min(1,max/w);w=Math.round(w*k);h=Math.round(h*k)}
+ const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(im,sx,sy,sw,sh,0,0,w,h);let q=.8,d;do{d=c.toDataURL('image/jpeg',q);q-=.1}while(d.length>140000&&q>.3);ok(d)};im.onerror=()=>no(new Error('Could not read that image'));im.src=URL.createObjectURL(file)});
+$('#avf').onchange=run(async e=>{if(e.target.files[0])$('#pf [name=avatar]').value=await shrink(e.target.files[0],320,true)});
+$('#pjf').onchange=run(async e=>{if(e.target.files[0])$('#jf [name=image]').value=await shrink(e.target.files[0],800)});
+$('#pf').onsubmit=run(async e=>{const fd=new FormData(e.target),f=Object.fromEntries(fd);
+ await api('/api/profile',{method:'PUT',body:JSON.stringify({name:f.name,headline:f.headline,location:f.location,availability:f.availability,resume:f.resume,about:f.about,avatar:f.avatar,accent:f.accent,font:f.font,hide:fd.getAll('hide'),
+ skills:f.skills.split(',').map(s=>s.trim()).filter(Boolean),stats:lines(f.stats).map(([value,label])=>({value,label})),experience:lines(f.experience).map(([role,company,years,impact])=>({role,company,years,impact})),
+ education:lines(f.education).map(([degree,school,years])=>({degree,school,years})),links:lines(f.links).map(([label,url])=>({label,url}))})});await load()});
+$('#jf').onsubmit=run(async e=>{const f=e.target,old=f.dataset.edit;await api('/api/projects',{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(f)))});
+ if(old)await api('/api/projects/'+old,{method:'DELETE'});f.reset();delete f.dataset.edit;$('#jb').textContent='Add project';await load()});
+$('#nf').onsubmit=run(async e=>{const b=e.target.querySelector('button');b.disabled=true;try{await api('/api/posts',{method:'POST',body:new FormData(e.target)});e.target.reset();await load()}finally{b.disabled=false}});
+document.addEventListener('submit',run(async e=>{if(!e.target.classList.contains('cf'))return;await api(`/api/posts/${e.target.dataset.id}/comments`,{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});await load()}),true);
+document.addEventListener('click',run(async e=>{const d=(e.target.closest('button')||{}).dataset||{};
+ if(d.react){const[id,kind]=d.react.split(':');await api(`/api/posts/${id}/react`,{method:'POST',body:JSON.stringify({visitor:vid,kind})});await load()}
+ else if(d.ep){const x=PJ[d.ep],f=$('#jf');['title','summary','outcome','stack','demo','repo','image'].forEach(k=>f.elements[k].value=x[k]||'');f.dataset.edit=d.ep;$('#jb').textContent='Save changes';f.closest('details').open=true;f.scrollIntoView({block:'center'})}
+ else if(d.dp&&confirm('Delete project?')){await api('/api/projects/'+d.dp,{method:'DELETE'});await load()}
+ else if(d.dpost&&confirm('Delete post?')){await api('/api/posts/'+d.dpost,{method:'DELETE'});await load()}
+ else if(d.dc){await api('/api/comments/'+d.dc,{method:'DELETE'});await load()}}));
+$('#th').onclick=()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;try{localStorage.theme=t}catch{}};
+$('#adl').textContent=tok?'Log out':'Admin';document.body.classList.toggle('admin',!!tok);
+$('#adl').onclick=run(async e=>{e.preventDefault();if(tok){try{delete localStorage.tok}catch{}location.reload();return}
+ const pw=prompt('Admin password');if(!pw)return;localStorage.tok=(await api('/api/login',{method:'POST',body:JSON.stringify({password:pw})})).token;location.reload()});
+const io='IntersectionObserver'in window?new IntersectionObserver(es=>es.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.05}):null;$$('.rv').forEach(el=>io?io.observe(el):el.classList.add('in'));
+async function boot(){let c=null;try{c=JSON.parse(localStorage[CK]||'null')}catch{}if(c){C=c;draw(...c);if(tok)fill(c[0])}
+ const n=$('#st');let err;for(let i=1;i<=12;i++){try{await load();n.hidden=true;return}catch(e){err=e;n.hidden=false;n.textContent=`Waiting for the server to wake up. The page will update by itself. (try ${i}/12) [${e.message}]`;await new Promise(r=>setTimeout(r,5000))}}
+ n.textContent=`Could not reach the server (${err&&err.message}). Please refresh in a moment.`}
 boot();
 </script></body></html>
